@@ -94,6 +94,29 @@ html {
   font-family: "courier", sans-serif;
 }
 
+.speak-btn {
+  height: 46px;
+  background-color: orange;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "courier", sans-serif;
+}  
+
+.mic-btn {
+  height: 46px;
+  background-color: orange;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "courier", sans-serif;
+} 
 @media (max-width: 786px) {
   .box {
     width: 80%;
@@ -116,4 +139,6 @@ html {
     font-size: 24px;
     height: 36px;
   }
+
+
 }

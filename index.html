@@ -25,11 +25,17 @@
         <h3 id="question">Q. What is 8 multiply by 4 ?</h3>
         <form id="questionForm" onsubmit="checkAnswer(event)">
           <input required id="answerInput" name="answer" type="number" />
+          <div>
+            <button class="speak-btn" id="speakQuestion">🔊</button>
+            <button class="mic-btn" id="micQuestion">🎤</button>
+          </div>
               <div>
                 <button class="submit-btn" type="submit">Submit</button>
                 <button class="reset-btn" id="resetScore">Reset Score</button>
               </div>
         </form>
+
+
       </div>
     </div>
   </body>

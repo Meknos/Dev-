@@ -1,6 +1,9 @@
 const questionEl = document.getElementById("question");
 const questionFormEl = document.getElementById("questionForm");
 const scoreEl = document.getElementById("score");
+const answerInputEl = document.getElementById("answerInput");
+const micBtn = document.getElementById("micQuestion");
+
 let storedAnswer;
 let score = parseInt(localStorage.getItem("score")) || 0;
 
@@ -45,4 +48,32 @@ document.getElementById("resetScore").addEventListener("click", () => {
   localStorage.setItem("score", score);
   scoreEl.innerText = score;
   Toastify({ text: "Score reset to 0", style: { background: "blue" } }).showToast();
+});
+
+document.getElementById("speakQuestion").addEventListener("click", () => {
+  let speech = new SpeechSynthesisUtterance(questionEl.innerText);
+  speech.lang = "en-US";
+  speech.rate = 1;
+  speech.pitch = 1;
+  speechSynthesis.speak(speech);
+});
+
+// Chuyển đổi giọng nói thành văn bản (Speech-to-Text)
+micBtn.addEventListener("click", () => {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.start();
+
+  recognition.onresult = (event) => {
+    const transcript = event.results[0][0].transcript;
+    answerInputEl.value = transcript.replace(/[^0-9]/g, ""); // Chỉ lấy số
+  };
+
+  recognition.onerror = (event) => {
+    console.error("Speech recognition error:", event.error);
+    Toastify({ text: "Speech recognition error!", style: { background: "orange" } }).showToast();
+  };
 });
